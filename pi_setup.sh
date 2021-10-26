@@ -34,7 +34,19 @@ pi_name="pi$pi_number"
 echo "Installing system software and updates"
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get -y install vim mpich2 xboxdrv libglew-dev sshpass libav-tools
+sudo apt-get -y install vim xboxdrv libglew-dev sshpass libav-tools
+
+#Instalo los paquetes que están obsoletos en las siguientes lineas
+echo "Installing openMPI instead of MPICH"
+sudo apt update
+sudo apt install openmpi-bin
+sudo apt install libopenmpi-dev
+
+echo "installing new lubav-tools"
+sudo apt-get install ffmpeg
+
+
+echo ""
 
 echo "Setting computer name"
 for file in \
