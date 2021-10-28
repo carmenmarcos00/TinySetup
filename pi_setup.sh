@@ -36,7 +36,6 @@ sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y install vim xboxdrv libglew-dev sshpass
 
-#Instalo los paquetes que están obsoletos en las siguientes lineas
 echo "Installing openMPI instead of MPICH"
 sudo apt update
 sudo apt install openmpi-bin
@@ -45,6 +44,16 @@ sudo apt install libopenmpi-dev
 echo "installing new libav-tools"
 sudo apt-get install ffmpeg
 
+echo ""
+
+echo"Symbolic link to libraries that cause problems when launching mpirun"
+sudo ln -s /usr/lib/arm-linux-gnueabihf/libEGL.so.1.1.0 /usr/lib/libEGL.so
+sudo ln -s /usr/lib/arm-linux-gnueabihf/libGLESv2.so.1.1.0 /usr/lib/libGLESv2.so
+
+echo ""
+
+echo"Making git clone of SPH repository"
+git clone https://github.com/TinyTitan/SPH
 
 echo ""
 
@@ -84,6 +93,23 @@ EOF
  
 echo "Generating key-pairs"
 ssh-keygen -N '' -f /home/pi/.ssh/id_rsa
+
+#SOLO HACER DESDE EL SCRIPT QUE LANZA EL MASTER AL FINAL (PASO E, F) NO VA AQUÍ, MEJOR EN EL OTRO SCRIPT
+#TODO: Cambiar de scrpt y automatizar número de ip e imputs
+echo "Solving problems with ssh autentication"
+echo "No password needed from now on"
+
+ssh-keygen -t rsa
+#enter
+#enter
+#enter
+cd $HOME/.ssh 
+
+cp id_rsa.pub authorized_keys
+scp id_rsa pi@192.168.3.102:$HOME/.ssh
+scp id_rsa.pub pi@192.168.3.102:$HOME/.ssh
+scp authorized_keys pi@192.168.3.102:$HOME/.ssh
+scp knownhosts pi@192.168.3.102:$HOME/.ssh
  
 echo "Rebooting"
 sudo reboot
