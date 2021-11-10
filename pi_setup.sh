@@ -23,6 +23,8 @@
 #THE SOFTWARE.
 
 
+sudo cp /etc/network/interfaces /etc/network/interfaces_backup
+
 echo "Enter the node number of this pi followed by [ENTER]: "
 read pi_number
 re='^[0-9]+$'
