@@ -58,8 +58,9 @@ ls /usr/lib/libGLESv2.so -la
 
 echo ""
 
-echo"Making git clone of SPH repository"
-git clone https://github.com/TinyTitan/SPH
+echo"Making git clone of my SPH repository"
+#Mine, as I have made some changes on src code and makefile
+https://github.com/carmenmarcos00/SPH
 
 echo "Configuring SSH service to start automatically"
 sudo systemctl enable ssh
