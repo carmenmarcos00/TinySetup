@@ -53,6 +53,9 @@ echo "Linking against //opt/vc/lib/libbrcm"
 sudo ln -s //opt/vc/lib/libbrcmEGL.so /usr/lib/libEGL.so
 sudo ln -s //opt/vc/lib/libbrcmGLESv2.so /usr/lib/libGLESv2.so
 
+ls /usr/lib/libEGL.so -la
+ls /usr/lib/libGLESv2.so -la
+
 echo ""
 
 echo"Making git clone of SPH repository"
